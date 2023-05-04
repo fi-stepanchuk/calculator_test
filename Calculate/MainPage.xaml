@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:constants="clr-namespace:Calculate;assembly=Calculate"
+             x:Class="Calculate.MainPage">
+
+    <RelativeLayout>
+        <StackLayout Orientation="Vertical" IsVisible="False" Padding="10, 10, 10, 10" x:Name="HistoryLayout" BackgroundColor="AliceBlue"
+                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                Property=Width,
+                                Factor=1}"
+              RelativeLayout.HeightConstraint=
+         "{ConstraintExpression Type=RelativeToParent,
+                                Property=Height,
+                                Factor=1}">
+            <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+                <Label TextColor="#000" CharacterSpacing="0.6">Історія операцій</Label>
+                <Button Text="×" BackgroundColor="#0000" TextColor="#555" Clicked="HideOperationHistory" WidthRequest="40"/>
+            </FlexLayout>
+
+            <ListView x:Name="HistoryView" ItemsSource="{Binding Operations}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="80">
+                            <StackLayout Orientation="Vertical" Padding="10">
+                                <Label Text="{Binding OperationBody}" FontSize="Medium" TextColor="Gray" />
+                                <Label Text="{Binding Result}" FontSize="Large" FontAttributes="Bold" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <RelativeLayout x:Name="MainLayout" BackgroundColor="#fff">
+            <Grid ColumnSpacing="0" RowSpacing="0" RelativeLayout.WidthConstraint=
+         "{ConstraintExpression Type=RelativeToParent,
+                                Property=Width,
+                                Factor=1}"
+              RelativeLayout.HeightConstraint=
+         "{ConstraintExpression Type=RelativeToParent,
+                                Property=Height,
+                                Factor=1}"
+              >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Result TextBox -->
+                <FlexLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" JustifyContent="End" AlignContent="SpaceAround" Direction="Column">
+                    <Label Text="" x:Name="PrevResult" FontSize="Medium" HorizontalTextAlignment="End" TextColor="LightGray" FlexLayout.Grow="1" Margin="20,0,0,0" />
+                    <Label x:Name="ResultText" 
+               Text="0" FontSize="Large" HorizontalTextAlignment="End" FlexLayout.Grow="1" TextColor="Black" FontAttributes="Bold" />
+                </FlexLayout>
+
+                <!-- Number Buttons -->
+                <Button Grid.Row="1" Grid.Column="0" Text="1" BackgroundColor="LightSteelBlue" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnNumberButtonClicked" />
+                <Button Grid.Row="1" Grid.Column="1" Text="2" BackgroundColor="LightSteelBlue" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnNumberButtonClicked" />
+                <Button Grid.Row="1" Grid.Column="2" Text="3" BackgroundColor="LightSteelBlue" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnNumberButtonClicked" />
+                <Button Grid.Row="2" Grid.Column="0" Text="4" BackgroundColor="LightSteelBlue" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnNumberButtonClicked" />
+                <Button Grid.Row="2" Grid.Column="1" Text="5" BackgroundColor="LightSteelBlue" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnNumberButtonClicked" />
+                <Button Grid.Row="2" Grid.Column="2" Text="6" BackgroundColor="LightSteelBlue" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnNumberButtonClicked" />
+                <Button Grid.Row="3" Grid.Column="0" Text="7" BackgroundColor="LightSteelBlue" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnNumberButtonClicked" />
+                <Button Grid.Row="3" Grid.Column="1" Text="8" BackgroundColor="LightSteelBlue" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnNumberButtonClicked" />
+                <Button Grid.Row="3" Grid.Column="2" Text="9" BackgroundColor="LightSteelBlue" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnNumberButtonClicked" />
+                <Button Grid.Row="4" Grid.Column="0" Text="0" BackgroundColor="LightSteelBlue" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnNumberButtonClicked" />
+
+                <!-- Operator Buttons -->
+                <Button Grid.Row="1" Grid.Column="3" Text="+" BackgroundColor="DarkCyan" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnOperatorButtonClicked" />
+                <Button Grid.Row="2" Grid.Column="3" Text="-" BackgroundColor="DarkCyan" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnOperatorButtonClicked" />
+                <Button Grid.Row="3" Grid.Column="3" Text="*" BackgroundColor="DarkCyan" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnOperatorButtonClicked" />
+                <Button Grid.Row="4" Grid.Column="3" Text="/" BackgroundColor="DarkCyan" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnOperatorButtonClicked" />
+
+                <!-- Other Buttons -->
+                <Button Grid.Row="4" Grid.Column="1" Text="C" BackgroundColor="DarkCyan" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnClearButtonClicked" />
+                <Button Grid.Row="4" Grid.Column="2" Text="=" BackgroundColor="DarkCyan" BorderColor="White" BorderWidth="2" TextColor="White" Clicked="OnEqualButtonClicked" />
+            </Grid>
+            <Button Text="Історія" FontSize="10" BackgroundColor=" #20FBC1BC" Padding="2" Clicked="ShowOperationHistory"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</ContentPage>
